@@ -1,0 +1,14 @@
+.main {
+  margin: 70px auto auto;
+  min-width: 300px;
+  width: 100%;
+  padding: 0 30px;
+  box-sizing: border-box;
+  color: #61dafb;
+}
+
+@media screen and (max-width: 500px) {
+  .main {
+    font-size: 10px;
+  }
+}
