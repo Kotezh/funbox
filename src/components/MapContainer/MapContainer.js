@@ -9,18 +9,34 @@ const render = (status) => {
 };
 
 export default function MapContainer() {
+  // const [clicks, setClicks] = React.useState();
+  const [zoom, setZoom] = React.useState(3); // initial zoom
+  const [center, setCenter] = React.useState({
+    lat: 0,
+    lng: 0,
+  });
+
+  // const onClick = (e) => {
+  //   // avoid directly mutating state
+  //   setClicks([...clicks, e.latLng]);
+  // };
+
+  // const onIdle = (m) => {
+  //   console.log("onIdle");
+  //   setZoom(m.getZoom());
+  //   setCenter(m.getCenter().toJSON());
+  // };
+
   return (
     <div style={{ display: "flex", height: "100%" }}>
       <Wrapper apiKey={YOUR_GOOGLE_API_KEY} render={render}>
         <MapComponent
           // onClick={onClick}
           // onIdle={onIdle}
-          // center={center}
-          // zoom={zoom}
-          style={{ flexGrow: "1", height: "100%" }}
-        >
-
-        </MapComponent>
+          center={center}
+          zoom={zoom}
+          style={{ flexGrow: "1", height: "100%", width: "300px" }}
+        ></MapComponent>
       </Wrapper>
     </div>
   );

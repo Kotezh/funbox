@@ -1,13 +1,21 @@
 import { Form, Input } from "antd";
-import './SearchForm.css';
+import "./SearchForm.css";
 
-function SearchForm() {
+function SearchForm({ onSubmit, newMarker }) {
+  function handleSubmit() {
+    onSubmit(newMarker);
+  }
+
   return (
-    <Form
-
-    >
+    <Form >
       <Form.Item>
-        <Input placeholder='Введите адрес' />
+        <Input
+          placeholder='Введите адрес'
+          type='search'
+          required
+          size='30'
+          minLength='2'
+        />
       </Form.Item>
     </Form>
   );
