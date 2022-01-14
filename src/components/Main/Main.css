@@ -12,6 +12,13 @@
   /* height: 100%; */
 }
 
+.main__loading-text {
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
 @media screen and (max-width: 500px) {
   .main {
     font-size: 10px;

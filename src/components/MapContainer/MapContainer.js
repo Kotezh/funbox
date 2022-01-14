@@ -1,8 +1,8 @@
 // import { Wrapper, Status } from "@googlemaps/react-wrapper";
 // import { Map, InfoWindow, Marker, GoogleApiWrapper } from "google-maps-react";
+import { GoogleMap } from "@react-google-maps/api";
 import React, { useCallback, useRef } from "react";
 // import MapComponent from "../MapComponent/MapComponent";
-import { GoogleMap } from "@react-google-maps/api";
 
 const containerStyle = {
   width: "100%",
@@ -29,7 +29,6 @@ export default function MapContainer({ center }) {
         onLoad={onLoad}
         onUnmount={onUnmount}
       >
-        {/* <MapComponent></MapComponent> */}
       </GoogleMap>
     </div>
   );
