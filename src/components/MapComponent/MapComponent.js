@@ -11,14 +11,8 @@ export default function MapComponent({ zoom, center }) {
         new window.google.maps.Map(ref.current, { zoom: zoom, center: center })
       );
     }
-  }, [ref, map]);
+  }, [ref, map, center, zoom]);
 
   return <div ref={ref} id='map' className="map-component"/>;
 }
 
-// useEffect(() => {
-//   new window.google.maps.Map(ref.current, {
-//     center,
-//     zoom,
-//   });
-// });

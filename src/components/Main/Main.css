@@ -2,9 +2,14 @@
   margin: 70px auto auto;
   min-width: 300px;
   width: 100%;
+  min-height: 300px;
   padding: 0 30px;
   box-sizing: border-box;
   color: #61dafb;
+}
+
+.map {
+  /* height: 100%; */
 }
 
 @media screen and (max-width: 500px) {
