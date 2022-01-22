@@ -1,43 +1,42 @@
-import { API_KEY } from "../../utils/constants";
-import { useJsApiLoader } from "@react-google-maps/api";
+import { useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Row, Col, Button } from "antd";
+import { CloseOutlined } from "@ant-design/icons";
+import { MarkerList } from "../MarkerList/MarkerList";
+import { Search } from "../Search/Search";
+import { MapContainer } from "../MapContainer/MapContainer";
+import { clearAllMarkers } from "../../services/actions";
 import "./Main.css";
-import { Row, Col, Form, Input } from "antd";
-import MarkerList from "../MarkerList/MarkerList";
-// import SearchForm from "../SearchForm/SearchForm";
-import Search from "../Search/Search";
-import MapContainer from "../MapContainer/MapContainer";
 
-const defaultCenter = {
-  lat: -3.745,
-  lng: -38.523,
-};
+function Main({ isLoaded }) {
+  const dispatch = useDispatch();
+  const { markers } = useSelector((store) => store.markers);
+  const clearMarkers = useCallback(() => {
+    dispatch(clearAllMarkers());
+  }, [dispatch]);
 
-const libraries = ["places"];
-
-function Main() {
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: API_KEY,
-    libraries,
-  });
   return (
     <main className='main'>
       {isLoaded ? (
         <Row gutter={[16, { xs: 8, sm: 16, md: 24, lg: 32 }]} justify='center'>
           <Col span={8}>
-            {/* <SearchForm /> */}
             <Search />
             <MarkerList />
+            {markers.length ? (
+              <Button icon={<CloseOutlined />} onClick={clearMarkers}>
+                Удалить все маркеры
+              </Button>
+            ) : null}
           </Col>
           <Col span={16} className='map'>
-            <MapContainer center={defaultCenter} />
+            <MapContainer />
           </Col>
         </Row>
       ) : (
-        <h2 className="main__loading-text">Loading...</h2>
+        <h2 className='main__loading-text'>Loading...</h2>
       )}
     </main>
   );
 }
 
-export default Main;
+export { Main };

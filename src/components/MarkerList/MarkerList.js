@@ -1,73 +1,57 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { List } from "antd";
-import "./MarkerList.css";
 import { CloseSquareOutlined } from "@ant-design/icons";
 import ReactDragListView from "react-drag-listview";
+import { dragAndDrop, deleteMarker } from "../../services/actions";
+import "./MarkerList.css";
 
-const markersData = [
-  {
-    title: "Ant Design Title 1",
-  },
-  {
-    title: "Ant Design Title 2",
-  },
-  {
-    title: "Ant Design Title 3",
-  },
-  {
-    title: "Ant Design Title 4",
-  },
-];
 function MarkerList() {
-  const [items, setItems] = useState(markersData);
-  // const [itemDeleted, setItemDeleted] = useState(null);
+  const dispatch = useDispatch();
+  const { markers } = useSelector((store) => store.markers);
 
-  const onDragEnd = (fromIndex, toIndex) => {
-    if (toIndex < 0) return;
-    const tempItems = [...items];
-    const item = tempItems.splice(fromIndex, 1)[0];
-    tempItems.splice(toIndex, 0, item);
-    setItems(tempItems);
+  const handleDeleteMarker = (id) => {
+    dispatch(deleteMarker(id));
   };
-  function handleDeleteMarker(item) {
-    const newArray = items.filter(
-      (currentCard) => currentCard.title !== item.title
-    );
-    setItems(newArray);
-  }
+
+  const handleDragEnd = (fromIndex, toIndex) => {
+    if (toIndex < 0) return;
+    dispatch(dragAndDrop(fromIndex, toIndex));
+  };
 
   return (
     <ReactDragListView
       nodeSelector='.ant-list-item.draggble'
-      onDragEnd={onDragEnd}
+      onDragEnd={handleDragEnd}
     >
       <List
         itemLayout='horizontal'
-        dataSource={items}
+        dataSource={markers}
         size='small'
         bordered
+        className='marker-list'
         renderItem={(item) => (
           <List.Item
-            key={item.title}
+            key={item.id}
+            className='draggble'
             actions={[
               <CloseSquareOutlined
-                style={{ fontSize: "24px", color: "#08c" }}
-                onClick={() => handleDeleteMarker(item)}
+                className='close-button'
+                onClick={() => handleDeleteMarker(item.id)}
               />,
             ]}
-            className='draggble'
           >
             <List.Item.Meta
               title={
                 <p
-                  className='marker-list draggble-feat'
+                  className='marker-title draggble-feat'
                   style={{
                     color: "#61dafb",
                     textAlign: "left",
                     margin: 0,
                   }}
                 >
-                  {item.title}
+                  {item.address}
                 </p>
               }
             />
@@ -78,4 +62,4 @@ function MarkerList() {
   );
 }
 
-export default MarkerList;
+export { MarkerList };

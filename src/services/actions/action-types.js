@@ -1,0 +1,5 @@
+export const CREATE_MARKER = 'CREATE_MARKER'
+export const DELETE_MARKER = 'DELETE_MARKER'
+export const MOVE_CENTER = 'MOVE_CENTER'
+export const DRAG_AND_DROP = 'DRAG_AND_DROP'
+export const CLEAR_ALL_MARKERS = 'CLEAR_ALL_MARKERS'

@@ -2,8 +2,42 @@
   cursor: grab;
 }
 
+.marker-list {
+  margin-bottom: 24px;
+  height: 400px;
+  min-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.marker-item {
+}
+
+.close-button {
+  font-size: 24px;
+  color: #08c;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0088cc;
+  border-radius: 8px;
+  border: 1px solid #0088cc;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #61dafb;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 500px) {
-  .marker-list {
-    font-size: 10px;
+  .marker-title {
+    font-size: 8px;
+  }
+  .close-button {
+    font-size: 14px;
   }
 }
