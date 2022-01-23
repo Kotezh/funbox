@@ -3,6 +3,7 @@ import {
   DELETE_MARKER,
   MOVE_CENTER,
   DRAG_AND_DROP,
+  CHANGE_POSITION,
   CLEAR_ALL_MARKERS,
 } from "../actions/action-types";
 
@@ -28,6 +29,13 @@ export const dragAndDrop = (fromIndex, toIndex) => ({
   type: DRAG_AND_DROP,
   fromIndex,
   toIndex,
+});
+
+export const changePosition = (id, address, position) => ({
+  type: CHANGE_POSITION,
+  id,
+  address,
+  position,
 });
 
 export const clearAllMarkers = () => ({

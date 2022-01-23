@@ -7,7 +7,7 @@ import {
 } from "@react-google-maps/api";
 import Geocode from "react-geocode";
 import { useDispatch, useSelector } from "react-redux";
-import { createMarker } from "../../services/actions/index";
+import { changePosition, createMarker } from "../../services/actions/index";
 import { deleteMarker } from "../../services/actions/index";
 
 const containerStyle = {
@@ -55,11 +55,21 @@ function MapContainer() {
 
   const confirmDelete = () => {};
 
-  const onDrag = () => {
-    console.log("tttt");
-    // dispatch(moveToCenter(lat, lng));
+  const handleDragMarker = (id, location) => {
+    const lat = location.latLng.lat();
+    const lng = location.latLng.lng();
+    Geocode.fromLatLng(lat, lng)
+      .then((response) => {
+        const address = response.results[0].formatted_address;
+        console.log(id, address, { lat, lng });
+        dispatch(changePosition(id, address, { lat, lng }));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
-  const polyline = markers.map((marker) => marker.position);
+
+  const polyline = markers?.map((marker) => marker.position);
   // useEffect(()=>{},[])
 
   return (
@@ -77,7 +87,7 @@ function MapContainer() {
           key={`place-id-${Math.floor(Math.random() * 1000000)}`}
           position={center}
         ></Marker> */}
-        {markers.map((marker) => {
+        {markers?.map((marker) => {
           return (
             <Marker
               key={marker.id}
@@ -88,12 +98,14 @@ function MapContainer() {
               // }}
               position={marker.position}
               address={marker.address}
-              // draggable={true}
+              draggable={true}
               onClick={() => {
                 setSelectedMarker(marker);
               }}
               onRightClick={() => handleDeleteMarker(marker.id)}
-              onDragEnd={onDrag}
+              onDragEnd={(address, newPosition) =>
+                handleDragMarker(marker.id, address, newPosition)
+              }
             />
           );
         })}

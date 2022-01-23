@@ -22,7 +22,7 @@ function Main({ isLoaded }) {
           <Col span={8}>
             <Search />
             <MarkerList />
-            {markers.length ? (
+            {markers?.length ? (
               <Button icon={<CloseOutlined />} onClick={clearMarkers}>
                 Удалить все маркеры
               </Button>

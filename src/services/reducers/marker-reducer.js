@@ -2,6 +2,7 @@ import {
   CREATE_MARKER,
   DELETE_MARKER,
   DRAG_AND_DROP,
+  CHANGE_POSITION,
   CLEAR_ALL_MARKERS,
 } from "../actions/action-types";
 
@@ -30,10 +31,23 @@ export const markerReducer = (state = initialStateMarkers, action) => {
 
     case DRAG_AND_DROP:
       const markers = [...state.markers];
-      const fromMarker = markers.splice(action.fromIndex, 1)[0];
-      markers.splice(action.toIndex, 0, fromMarker);
-
+      const fromItem = markers.splice(action.fromIndex, 1)[0];
+      markers.splice(action.toIndex, 0, fromItem);
       return { markers };
+
+    case CHANGE_POSITION:
+      return {
+        markers: state.markers.map((marker) => {
+          if (marker.id === action.id) {
+            return {
+              ...marker,
+              address: action.address,
+              position: action.position,
+            };
+          }
+          return marker;
+        }),
+      };
 
     case CLEAR_ALL_MARKERS:
       return initialStateMarkers;
