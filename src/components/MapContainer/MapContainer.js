@@ -36,6 +36,7 @@ function MapContainer() {
     (location) => {
       const lat = location.latLng.lat();
       const lng = location.latLng.lng();
+      console.log(lat, lng);
       Geocode.fromLatLng(lat, lng)
         .then((response) => {
           const id = response.results[0].place_id;
