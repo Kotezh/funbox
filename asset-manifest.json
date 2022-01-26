@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/funbox/static/css/main.7e67b6d7.css",
-    "main.js": "/funbox/static/js/main.e744bc6f.js",
+    "main.js": "/funbox/static/js/main.5f6bc8ed.js",
     "index.html": "/funbox/index.html",
     "main.7e67b6d7.css.map": "/funbox/static/css/main.7e67b6d7.css.map",
-    "main.e744bc6f.js.map": "/funbox/static/js/main.e744bc6f.js.map"
+    "main.5f6bc8ed.js.map": "/funbox/static/js/main.5f6bc8ed.js.map"
   },
   "entrypoints": [
     "static/css/main.7e67b6d7.css",
-    "static/js/main.e744bc6f.js"
+    "static/js/main.5f6bc8ed.js"
   ]
 }
