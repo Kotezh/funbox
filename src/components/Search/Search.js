@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import usePlacesAutocomplete from "use-places-autocomplete";
 import Geocode from "react-geocode";
-// import "antd/dist/antd.css";
 import { Select } from "antd";
 import { createMarker, moveToCenter } from "../../services/actions/index";
 import "./Search.css";

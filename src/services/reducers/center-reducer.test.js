@@ -1,7 +1,7 @@
 import * as types from "../actions/action-types";
 import { centerReducer } from "./center-reducer";
 
-it("должен изменить координаты центра", () => {
+it("Должен изменить координаты центра", () => {
   const centerBefore = {
     lat: 55.7533818,
     lng: 37.6218572,

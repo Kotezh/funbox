@@ -54,15 +54,12 @@ function MapContainer() {
     dispatch(deleteMarker(id));
   };
 
-  const confirmDelete = () => {};
-
   const handleDragMarker = (id, location) => {
     const lat = location.latLng.lat();
     const lng = location.latLng.lng();
     Geocode.fromLatLng(lat, lng)
       .then((response) => {
         const address = response.results[0].formatted_address;
-        console.log(id, address, { lat, lng });
         dispatch(changePosition(id, address, { lat, lng }));
       })
       .catch((error) => {
@@ -71,7 +68,6 @@ function MapContainer() {
   };
 
   const polyline = markers?.map((marker) => marker.position);
-  // useEffect(()=>{},[])
 
   return (
     <div style={{ display: "flex", height: "100%" }}>
@@ -84,19 +80,11 @@ function MapContainer() {
         onUnmount={onUnmount}
         onClick={onMapClick}
       >
-        {/* <Marker
-          key={`place-id-${Math.floor(Math.random() * 1000000)}`}
-          position={center}
-        ></Marker> */}
         {markers?.map((marker) => {
           return (
             <Marker
               key={marker.id}
               id={marker.id}
-              // position={{
-              //   lat: parseFloat(marker.lat),
-              //   lng: parseFloat(marker.lng),
-              // }}
               position={marker.position}
               address={marker.address}
               draggable={true}
@@ -115,10 +103,6 @@ function MapContainer() {
             onCloseClick={() => {
               setSelectedMarker(null);
             }}
-            // position={{
-            //   lat: parseFloat(selectedMarker.lat),
-            //   lng: parseFloat(selectedMarker.lng),
-            // }}
             position={selectedMarker.position}
             onPositionChanged={() => selectedMarker.position}
           >
