@@ -1,21 +1,21 @@
 import React from "react";
-import { useJsApiLoader } from "@react-google-maps/api";
-import { API_KEY } from "../../utils/constants";
-import Geocode from "react-geocode";
+// import { useJsApiLoader } from "@react-google-maps/api";
+// import { API_KEY } from "../../utils/constants";
+// import Geocode from "react-geocode";
 import "antd/dist/antd.css";
 import "./App.css";
 import { Main } from "../Main/Main";
 
-const libraries = ["places"];
+// const libraries = ["places"];
 
 function App() {
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: API_KEY,
-    libraries,
-  });
+  // const { isLoaded } = useJsApiLoader({
+  //   id: "google-map-script",
+  //   googleMapsApiKey: API_KEY,
+  //   libraries,
+  // });
 
-  Geocode.setApiKey(API_KEY);
+  // Geocode.setApiKey(API_KEY);
 
   return (
     <div className='app'>
@@ -29,7 +29,7 @@ function App() {
           Редактор маршрутов
         </a>
       </header>
-      <Main isLoaded={isLoaded} />
+      <Main />
       <footer className='app__footer'>
         <a
           className='app__link'
@@ -37,7 +37,7 @@ function App() {
           target='_blank'
           rel='noopener noreferrer'
         >
-          Nadia Kotegova
+          &copy; 2022 Nadia Kotegova
         </a>
       </footer>
     </div>

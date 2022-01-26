@@ -1,5 +1,8 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useJsApiLoader } from "@react-google-maps/api";
+import { API_KEY } from "../../utils/constants";
+import Geocode from "react-geocode";
 import { Row, Col, Button } from "antd";
 import { CloseOutlined } from "@ant-design/icons";
 import { MarkerList } from "../MarkerList/MarkerList";
@@ -8,7 +11,16 @@ import { MapContainer } from "../MapContainer/MapContainer";
 import { clearAllMarkers } from "../../services/actions";
 import "./Main.css";
 
-function Main({ isLoaded }) {
+const libraries = ["places"];
+
+function Main() {
+  const { isLoaded } = useJsApiLoader({
+    id: "google-map-script",
+    googleMapsApiKey: API_KEY,
+    libraries,
+  });
+
+  Geocode.setApiKey(API_KEY);
   const dispatch = useDispatch();
   const { markers } = useSelector((store) => store.markers);
   const clearMarkers = useCallback(() => {
